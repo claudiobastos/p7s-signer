@@ -1,0 +1,28 @@
+#!/bin/bash
+
+prefix=$1
+if [[ $1 == "" ]]; then
+  prefix=fake
+fi
+echo Usando prefixo $prefix
+
+# gera um certificado auto-assinado
+openssl req \
+  -newkey rsa:4096 \
+  -nodes \
+  -x509 \
+  -sha256 \
+  -days 365 \
+  -keyout $prefix-private.key \
+  -out $prefix.pem \
+  -subj "/C=BR/ST=Minas Gerais/L=Belo Horizonte/O=Pessoal/OU=TI/CN=Desenvolvimento"
+
+# extrai a chave privada
+
+# extrai a chave pública
+
+echo 'Arquivos gerados:'
+file $prefix-private.key
+file $prefix.pem
+#file $prefix-public.key
+echo ;
